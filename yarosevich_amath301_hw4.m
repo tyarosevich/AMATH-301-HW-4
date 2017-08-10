@@ -53,3 +53,48 @@ A4 = squeeze(list_coords(:,3,:));
 %     drawnow
 %     pause(dt)
 % end
+%% Exercise 2.a.)
+clc;clear all;close all;
+
+f = @(x,r) r.*x.*(1-x);
+A5 = zeros(31, 4);
+rList = [2.5; 3.2; 3.52; 4];
+A5(1,:) = .7;
+for j  = 1:4
+    r = rList(j);
+    for i = 2:31
+        A5(i, j) = f(A5(i-1, j),r);
+    end
+end
+% t = 0:30;
+% plot(t, A5(:,3))
+% axis([-5 40 0.25 1])
+% grid on
+% grid minor
+
+P_r1 = 1; P_r2 = 2;P_r3 = 4;
+A6 = [P_r1;P_r2;P_r3];
+%% Exercise 2.b.)
+r = 2.5:.001:4;
+A7 = zeros(501, 1501);
+A7(1,:) = .7;
+for i = 2:501
+    A7(i,:) = f(A7(i-1,:),r);
+
+end
+
+A7_final = A7(402:end,:);
+%plot(r,A7_final,'k.','Markersize',1);
+
+
+
+
+
+
+
+
+
+
+
+
+
