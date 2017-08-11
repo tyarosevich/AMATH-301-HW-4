@@ -86,6 +86,57 @@ end
 A7_final = A7(402:end,:);
 %plot(r,A7_final,'k.','Markersize',1);
 
+%% Exercise 3.a.)
+
+dt = .004;dx = .01;phi = .1;L = 1;
+steps = L/dx - 1;
+A = (1 - 2*((phi^2 * dt)/(dx^2)));
+B = (phi^2 * dt)/(dx^2);
+M = diag(zeros(1,steps)+ A) + diag((zeros(1,steps - 1)+B), -1) + diag((zeros(1,steps -1) +B), 1);
+
+
+
+%% Exercise 3.b.)
+
+M_eigs = eig(M);
+A11 = max(abs(M_eigs));
+
+%% Exercise 3.c.)
+
+x_i = dx:dx:L-dx;
+u_0 = exp(-200*(x_i -.5).^2);
+
+A12 = transpose(u_0);
+
+%% Exercise 3.d.)
+
+U_List = zeros(99,501);
+U_List(:,1) = A12;
+for n = 1:2/dt
+    t = n*dt;
+    U_List(:, n+1) = M*U_List(:,n);
+end
+
+u_bounds = zeros(1, 501);
+
+U_List = [u_bounds;U_List;u_bounds];
+
+A13 = U_List;
+
+%% Exercise 3.e.)
+
+% for j=1:(2/dt+1)
+% plot(linspace(0,L,L/dx+1)',A13(:,j));
+% axis([0,L,0,1]);
+% pause(dt);
+% end
+%     
+    
+    
+    
+    
+    
+    
 
 
 
