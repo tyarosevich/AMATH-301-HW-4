@@ -3,6 +3,7 @@ clc;clear all;close all;
 load imag_data.mat
 
 A1 = sum(B, 2)/40;
+save A1.dat A1 -ASCII
 
 %imshow(uint8(reshape(A1,200,175)))
 
@@ -16,6 +17,8 @@ end
 [U, S, V] = svd(A, 'econ');
 s = svd(A,'econ');
 A2 = s(1:10);
+save A2.dat A2 -ASCII
+
 
 %% Exercise 4b. c.)
 
@@ -25,6 +28,7 @@ x = transpose(U(:,1)) * A;
 y = transpose(U(:,2)) * A;
 z = transpose(U(:,3)) * A;
 A3 = x;
+save A3.dat A3 -ASCII
 
 %% Exercise 4b. d.)
 
@@ -45,6 +49,10 @@ z = transpose(U(:,3)) * A_final;
 % hold on
 % plot3(x(:,21:40), y(:,21:40),z(:,21:40), 'ro')
 % plot3(x(:,41), y(:,41),z(:,41), 'gs')
+
+A4 = [x(1,41);y(1,41);z(1,41)];
+save A4.dat A4 -ASCII
+
 
 %imshow(uint8(reshape(u,200,175)))
 
