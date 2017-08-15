@@ -1,4 +1,5 @@
 %% Homework 4 Exercise 1.a.)
+clc; clear all;close all;
 
 xvec = 0:.05:.4; yvec = 0:.05:.4; zvec = 0:.05:.4;
 
@@ -18,6 +19,8 @@ c = [.1; 1.8; 11.8];
 
 x_v = x0(:); y_v = y0(:);z_v = z0(:);
 A1 = [transpose(x_v);transpose(y_v);transpose(z_v)];
+save A1.dat A1 -ASCII
+
 
 % plot3(x_v, y_v, z_v, '.')
 
@@ -42,6 +45,10 @@ end
 A2 = squeeze(list_coords(:,1,:));
 A3 = squeeze(list_coords(:,2,:));
 A4 = squeeze(list_coords(:,3,:));
+save A2.dat A2 -ASCII
+save A3.dat A3 -ASCII
+save A4.dat A4 -ASCII
+
 
 % figure
 % plot3(A2(end,:),A3(end,:),A4(end,:));
@@ -74,6 +81,10 @@ end
 
 P_r1 = 1; P_r2 = 2;P_r3 = 4;
 A6 = [P_r1;P_r2;P_r3];
+
+save A5.dat A5 -ASCII
+save A6.dat A6 -ASCII
+
 %% Exercise 2.b.)
 r = 2.5:.001:4;
 A7 = zeros(501, 1501);
@@ -85,14 +96,20 @@ end
 
 A7_final = A7(402:end,:);
 %plot(r,A7_final,'k.','Markersize',1);
+save A7.dat A7_final -ASCII
+
 
 %% Exercise 3.a.)
+clc;clear all; close all;
 
 dt = .004;dx = .01;phi = .1;L = 1;
 steps = L/dx - 1;
 A = (1 - 2*((phi^2 * dt)/(dx^2)));
 B = (phi^2 * dt)/(dx^2);
 M = diag(zeros(1,steps)+ A) + diag((zeros(1,steps - 1)+B), -1) + diag((zeros(1,steps -1) +B), 1);
+save A8.dat A -ASCII
+save A9.dat B -ASCII
+save A10.dat M -ASCII
 
 
 
@@ -100,6 +117,7 @@ M = diag(zeros(1,steps)+ A) + diag((zeros(1,steps - 1)+B), -1) + diag((zeros(1,s
 
 M_eigs = eig(M);
 A11 = max(abs(M_eigs));
+save A11.dat A11 -ASCII
 
 %% Exercise 3.c.)
 
@@ -107,6 +125,8 @@ x_i = dx:dx:L-dx;
 u_0 = exp(-200*(x_i -.5).^2);
 
 A12 = transpose(u_0);
+save A12.dat A12 -ASCII
+
 
 %% Exercise 3.d.)
 
@@ -122,6 +142,8 @@ u_bounds = zeros(1, 501);
 U_List = [u_bounds;U_List;u_bounds];
 
 A13 = U_List;
+save A13.dat A13 -ASCII
+
 
 %% Exercise 3.e.)
 
